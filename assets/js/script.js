@@ -2,26 +2,18 @@
 const gamePadBtn = document.getElementById("game-pad-btn");
 const difficultySelect = document.getElementById("difficulty-select");
 const gridContainer = document.querySelector(".grid-container");
+const header = document.querySelector(".header");
 
 // Add an event listener for the "Play" button
 gamePadBtn.addEventListener("click", generateMinesweeperGrid);
 
 // Function to generate Minesweeper grid based on difficulty
 function generateMinesweeperGrid() {
-  // Hide the "Play" button
-  gamePadBtn.style.display = "none";
+  // Hide the difficulty level
+  difficultySelect.style.display = "none";
 
   // Get the selected difficulty level
   const difficulty = parseInt(difficultySelect.value);
-
-  // Generate the Minesweeper grid
-  createMinesweeperGrid(difficulty);
-}
-
-// Function to create Minesweeper grid based on difficulty
-function createMinesweeperGrid(difficulty) {
-  // Clear the content of the grid container
-  gridContainer.innerHTML = "";
 
   // Calculate the number of cells based on the difficulty
   let totalCells;
@@ -51,8 +43,10 @@ function createMinesweeperGrid(difficulty) {
       break;
   }
 
-  // Create the cells for the Minesweeper grid
-  for (let i = 1; i <= totalCells; i++) {
+  let i = 1;
+
+  //  do-while loop
+  do {
     const cell = document.createElement("div");
     cell.textContent = i;
     cell.classList.add("SquareCells"); // Add the class for styling
@@ -62,7 +56,9 @@ function createMinesweeperGrid(difficulty) {
 
     // Add the cell to the grid container
     gridContainer.appendChild(cell);
-  }
+
+    i++;
+  } while (i <= totalCells);
 
   // Set the grid container styles based on the number of columns
   gridContainer.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
@@ -79,16 +75,4 @@ function handleCellClick(event) {
 
   // Log a message to the console with the number of the clicked cell
   console.log(`Clicked Cell: ${cellNumber}`);
-}
-
-// Function to handle the "Play Again" button click
-function playAgain() {
-  // Hide the "Play Again" button
-  document.getElementById("play-again-btn").style.display = "none";
-
-  // Show the "Play" button
-  gamePadBtn.style.display = "block";
-
-  // Clear the Minesweeper grid
-  gridContainer.innerHTML = "";
 }

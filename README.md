@@ -51,3 +51,11 @@ What do I need to generate numbers?
 - else rigioca senza cambiare livello di difficoltà (approfondisci livello di didfficolta)
 - for cycle class name
 - add event listener to click for colors
+
+# bonus
+
+- Introduced a minesweeper-container element to wrap the Minesweeper grid.
+- Modified the generateMinesweeperGrid function to hide both the difficulty level.
+- Removed the playAgain function
+- Set the Minesweeper container (minesweeper-container) to be displayed when generating the Minesweeper grid.
+  Now, when you click "Play," the difficulty level and "Play" button will be hidden, and the Minesweeper grid will be displayed in the minesweeper-container.
