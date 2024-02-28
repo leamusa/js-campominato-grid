@@ -59,3 +59,10 @@ What do I need to generate numbers?
 - Removed the playAgain function
 - Set the Minesweeper container (minesweeper-container) to be displayed when generating the Minesweeper grid.
   Now, when you click "Play," the difficulty level and "Play" button will be hidden, and the Minesweeper grid will be displayed in the minesweeper-container.
+
+# change
+
+- Added a condition to check if a difficulty is selected before generating the grid.
+- Hid the difficulty selector after generating the grid.
+- showing an alert if no difficulty is selected.(need to fix this)
+- Changed the layout to use a while loop for cell instead a for loop to permit to play more times

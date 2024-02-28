@@ -1,29 +1,72 @@
 // Get references to HTML elements
-const gamePadBtn = document.getElementById("game-pad-btn");
-const gridContainer = document.getElementById("minesweeper-grid");
+const gamePadBtn = document.getElementById("game-pad-btn"); // Reference to the "Play" button
+const difficultySelect = document.getElementById("difficulty-select"); // Reference to the difficulty level select
+const gridContainer = document.getElementById("minesweeper-grid"); // Reference to the grid container
 
 // Add an event listener for the "Play" button
 gamePadBtn.addEventListener("click", generateMinesweeperGrid);
 
-// Function to generate Minesweeper grid
+// Function to generate the Minesweeper grid
 function generateMinesweeperGrid() {
-  // Clear the content of the grid container
-  gridContainer.innerHTML = "";
+  // Check if a difficulty level is selected
+  if (difficultySelect.value !== "") {
+    // Hide the difficulty level selector after generating the grid
+    difficultySelect.style.display = "none";
 
-  let cellNumber = 1;
-  do {
-    const cell = document.createElement("div");
-    cell.textContent = cellNumber;
-    cell.classList.add("SquareCells");
+    // Clear the content of the grid container
+    gridContainer.innerHTML = "";
 
-    // Add a click event listener for each cell
-    cell.addEventListener("click", handleCellClick);
+    // Calculate the number of cells based on the selected difficulty level
+    let totalCells;
+    let rows;
+    let columns;
 
-    // Add the cell to the grid container
-    gridContainer.appendChild(cell);
+    switch (parseInt(difficultySelect.value)) {
+      case 1:
+        totalCells = 100;
+        rows = 10;
+        columns = 10;
+        break;
+      case 2:
+        totalCells = 81;
+        rows = 9;
+        columns = 9;
+        break;
+      case 3:
+        totalCells = 49;
+        rows = 7;
+        columns = 7;
+        break;
+      default:
+        totalCells = 100;
+        rows = 10;
+        columns = 10;
+        break;
+    }
 
-    cellNumber++;
-  } while (cellNumber <= 100);
+    let cellNumber = 1;
+
+    // Use a while loop to generate the cells
+    while (cellNumber <= totalCells) {
+      const cell = document.createElement("div");
+      cell.textContent = cellNumber;
+      cell.classList.add("SquareCells");
+
+      // Add a click event listener for each cell
+      cell.addEventListener("click", handleCellClick);
+
+      // Add the cell to the grid container
+      gridContainer.appendChild(cell);
+
+      cellNumber++;
+    }
+
+    // Set the grid layout based on the number of columns
+    gridContainer.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+
+    // Alert the user to select a difficulty before playing
+    alert("Please select a difficulty before playing.");
+  }
 }
 
 // Function to handle the click event on each cell
