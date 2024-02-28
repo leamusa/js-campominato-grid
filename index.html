@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>js-minesweeper-grid</title>
+    <!-- meta tags and title -->
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
-   <!-- meta tags and title -->
-   <link rel="stylesheet" href="./assets/css/style.css" />
-  </head>
-  <body>
     <div class="container">
-      <button id="game-pad-btn">Play Again</button>
+      <button id="game-pad-btn">Play</button>
       <select id="difficulty-select">
         <option value="1">Difficulty 1</option>
         <option value="2">Difficulty 2</option>
         <option value="3">Difficulty 3</option>
       </select>
       <div class="grid-container"></div>
+
+      <!-- Add the "Play Again" button with initial style set to display: none -->
+      <button id="play-again-btn" style="display: none">Play Again</button>
+
       <script src="./assets/js/script.js"></script>
     </div>
   </body>
