@@ -1,61 +1,80 @@
-// main.js
-const generateBtn = document.getElementById("generate-btn");
-const difficultySelect = document.getElementById("difficulty-select");
-const gridContainer = document.getElementById("grid-container");
+document.addEventListener("DOMContentLoaded", function () {
+  const gamePadBtn = document.getElementById("game-pad-btn");
+  const difficultySelect = document.getElementById("difficulty-select");
+  const gridContainer = document.querySelector(".grid-container");
 
-// Aggiungi un listener per il clic sul bottone
-generateBtn.addEventListener("click", generateGrid);
-
-function generateGrid() {
-  // Ottieni il livello di difficoltà selezionato
-  const difficulty = parseInt(difficultySelect.value);
-
-  // Calcola il numero di caselle in base alla difficoltà
-  const gridSize = getGridSize(difficulty);
-
-  // Crea la griglia
-  createGrid(gridSize);
-}
-//crea dimensioni griglia
-function getGridSize(difficulty) {
-  const gridSizeMap = {
-    1: 100,
-    2: 81,
-    3: 49,
-  };
-
-  return gridSizeMap[difficulty] || 100;
-}
-
-function createGrid(size) {
-  // Pulisci il contenuto della griglia precedente
-  gridContainer.innerHTML = "";
-
-  // Crea le caselle della griglia
-  for (let i = 1; i <= size; i++) {
-    const cell = document.createElement("div");
-    cell.textContent = i;
-    cell.classList.add("grid-cell"); // Aggiungi la classe CSS per lo stile della cella
-
-    // Aggiungi un listener per il clic su ogni cella
-    cell.addEventListener("click", () => handleCellClick(i));
-
-    // Aggiungi la cella al contenitore della griglia
-    gridContainer.appendChild(cell);
+  // Check if elements are found
+  if (!gamePadBtn || !difficultySelect || !gridContainer) {
+    console.error("One or more elements not found. Check your HTML structure.");
+    return;
   }
-}
-// Imposta la larghezza della griglia in base al numero di colonne
-gridContainer.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
 
-// Invert lo stato della cella tra acceso e spento
-cellStates[cellNumber] = !cellStates[cellNumber];
+  // Add an event listener for the "Play Again" button
+  gamePadBtn.addEventListener("click", generateMinesweeperGrid);
 
-// Color la cella in base allo stato
-cell.style.backgroundColor = cellStates[cellNumber] ? "blue" : "";
+  function generateMinesweeperGrid() {
+    // Hide the "Play Again" button
+    gamePadBtn.style.display = "none";
 
-// Emetti un messaggio in console con il numero della cella cliccata e lo stato attuale
-console.log(
-  `Cella cliccata: ${cellNumber}, Stato: ${
-    cellStates[cellNumber] ? "Acceso" : "Spento"
-  }`
-);
+    // Get the selected difficulty level
+    const difficulty = parseInt(difficultySelect.value);
+
+    // Generate the Minesweeper grid
+    createMinesweeperGrid(difficulty);
+  }
+
+  function createMinesweeperGrid(difficulty) {
+    // Clear the content of the grid container
+    gridContainer.innerHTML = "";
+
+    // Calculate the number of cells based on the difficulty
+    let totalCells;
+    let rows;
+    let columns;
+
+    switch (difficulty) {
+      case 1:
+        totalCells = 100;
+        rows = 10;
+        columns = 10;
+        break;
+      case 2:
+        totalCells = 81;
+        rows = 9;
+        columns = 9;
+        break;
+      case 3:
+        totalCells = 49;
+        rows = 7;
+        columns = 7;
+        break;
+      default:
+        totalCells = 100;
+        rows = 10;
+        columns = 10;
+        break;
+    }
+
+    // Create the Minesweeper grid cells
+    for (let i = 1; i <= totalCells; i++) {
+      const cell = document.createElement("div");
+      cell.textContent = i;
+      cell.classList.add("SquareCells"); // Add the class for styling
+
+      // Add a click event listener for each cell
+      cell.addEventListener("click", handleCellClick);
+
+      // Add the cell to the grid container
+      gridContainer.appendChild(cell);
+    }
+
+    // Set the grid container styles based on the number of columns
+    gridContainer.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+  }
+
+  function handleCellClick(event) {
+    const cell = event.target;
+    // Handle the cell click as needed
+    // For example, change cell color or perform other actions
+  }
+});

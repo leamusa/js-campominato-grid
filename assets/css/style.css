@@ -1,21 +1,22 @@
 body {
   display: flex;
-  align-items: center;
   height: 100vh;
   border: 2px dashed;
   margin: 0 auto;
-}
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr); /* 10 colonne per riga */
-  gap: 5px; /* Spazio tra le celle */
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.grid-cell {
+.grid-container {
+  display: flex;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 5px;
+  text-align: center;
   border: 1px solid black;
   padding: 10px;
-  text-align: center;
 }
+
 #game-pad-btn {
   font-size: 30px;
   padding: 30px 80px;
@@ -24,4 +25,14 @@ body {
   color: blue;
   cursor: pointer;
   background-color: blueviolet;
+}
+
+.SquareCells {
+  border: 1px solid #000;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  cursor: pointer;
+  background-color: #da0f0f; /* Initial background color */
 }
