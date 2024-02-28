@@ -37,6 +37,7 @@
   /* align-content: center; */
   justify-content: center;
   align-items: center;
+  color: #ffffff;
 }
 #game-pad-btn,
 #difficulty-select {
