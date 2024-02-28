@@ -1,51 +1,61 @@
-// startGame1
 // main.js
-// Step 1: Const for the game button
-const myGamePadButton = document.getElementById("game-pad-btn");
+const generateBtn = document.getElementById("generate-btn");
+const difficultySelect = document.getElementById("difficulty-select");
+const gridContainer = document.getElementById("grid-container");
 
-// Step 2: Add an event listener to the game pad button
-myGamePadButton.addEventListener("click", GameClass.startGame);
-class GameClass {
-  // Step 2: Function to start the game
-  static startGame() {
-    console.log("Step 1: Start the game");
+// Aggiungi un listener per il clic sul bottone
+generateBtn.addEventListener("click", generateGrid);
 
-    // Step 3: Clear the grid of cells
-    GameClass.reset();
-    console.log("Step 3: Grid cleared");
+function generateGrid() {
+  // Ottieni il livello di difficoltà selezionato
+  const difficulty = parseInt(difficultySelect.value);
 
-    // Step 4: Get the difficulty level from the HTML select
-    var difficulty = parseInt(select.value);
-    console.log("Step 4: Difficulty:", difficulty);
+  // Calcola il numero di caselle in base alla difficoltà
+  const gridSize = getGridSize(difficulty);
 
-    // Step 5: Add a check - if it's a new game, open the grids
-    if (newGame) {
-      console.log("Step 5: New game, open the grids");
+  // Crea la griglia
+  createGrid(gridSize);
+}
+//crea dimensioni griglia
+function getGridSize(difficulty) {
+  const gridSizeMap = {
+    1: 100,
+    2: 81,
+    3: 49,
+  };
 
-      // Step 6: Based on the selected difficulty level, generate a grid of cells
-      switch (difficulty) {
-        // Easy: 10 cells per row
-        case 1:
-          GameClass.generateCells(10);
-          break;
+  return gridSizeMap[difficulty] || 100;
+}
 
-        // Medium: 9 cells per row
-        case 2:
-          GameClass.generateCells(9);
-          break;
+function createGrid(size) {
+  // Pulisci il contenuto della griglia precedente
+  gridContainer.innerHTML = "";
 
-        // Hard: 7 cells per row
-        case 3:
-          GameClass.generateCells(7);
-          break;
-      }
+  // Crea le caselle della griglia
+  for (let i = 1; i <= size; i++) {
+    const cell = document.createElement("div");
+    cell.textContent = i;
+    cell.classList.add("grid-cell"); // Aggiungi la classe CSS per lo stile della cella
 
-      newGame = true;
-      myGamePadButton.textContent = "Play Again";
-    } else {
-      console.log(
-        "Step 5: Same game, play again without changing the difficulty"
-      );
-    }
+    // Aggiungi un listener per il clic su ogni cella
+    cell.addEventListener("click", () => handleCellClick(i));
+
+    // Aggiungi la cella al contenitore della griglia
+    gridContainer.appendChild(cell);
   }
 }
+// Imposta la larghezza della griglia in base al numero di colonne
+gridContainer.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+
+// Invert lo stato della cella tra acceso e spento
+cellStates[cellNumber] = !cellStates[cellNumber];
+
+// Color la cella in base allo stato
+cell.style.backgroundColor = cellStates[cellNumber] ? "blue" : "";
+
+// Emetti un messaggio in console con il numero della cella cliccata e lo stato attuale
+console.log(
+  `Cella cliccata: ${cellNumber}, Stato: ${
+    cellStates[cellNumber] ? "Acceso" : "Spento"
+  }`
+);
