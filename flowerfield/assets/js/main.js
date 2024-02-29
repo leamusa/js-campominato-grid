@@ -46,14 +46,14 @@ function generateFlowerfieldGrid() {
 
     let cellNumber = 1;
 
-    // Use a while loop to generate the cells
+    // Generate the cells
     while (cellNumber <= totalCells) {
       const cell = document.createElement("div");
-      cell.textContent = "🌸"; // Display a flower emoji in each cell
+      cell.textContent = "🌻"; // Floweremoji
       cell.classList.add("FlowerCells"); // Add a class for styling
 
       // Add a click event listener for each cell
-      cell.addEventListener("click", handleFlowerClick);
+      cell.addEventListener("click", handleCellClick);
 
       // Add the cell to the grid container
       gridContainer.appendChild(cell);
@@ -69,14 +69,9 @@ function generateFlowerfieldGrid() {
   }
 }
 
-// Function to handle the click event on each flower cell
-function handleFlowerClick(event) {
+// Function to handle the click event on each cell
+function handleCellClick(event) {
   const clickedCell = event.target;
-  // Change the background color of the clicked cell to pink
-  clickedCell.style.backgroundColor = "#ffc0cb"; // Pink color
-
-  // Log a message to the console indicating a flower is picked
-  console.log("Picked a Flower!");
 
   // Check if the clicked cell has mushrooms
   handleMushroomCheck(clickedCell);
@@ -95,9 +90,9 @@ function handleMushroomCheck(clickedCell) {
     // Increment the number of found mushrooms
     foundMushrooms++;
 
-    // Check if the user has found 3 mushrooms
-    if (foundMushrooms === 3) {
-      // If the user has found 3 mushrooms, end the game
+    // Check if the user has found 16 mushrooms
+    if (foundMushrooms === 16) {
+      // If the user has found 16 mushrooms, end the game
       endGame();
     }
   } else {
@@ -108,11 +103,12 @@ function handleMushroomCheck(clickedCell) {
 
 // Function to handle additional flower logic
 function handleFlowerLogic(clickedCell) {
-  // Change the background color of the cell to pink
-  clickedCell.style.backgroundColor = "#ffc0cb"; // Pink color
+  // Change the background color of the cell to blue
+  clickedCell.style.backgroundColor = "#0000ff";
 
-  // Additional logic for flowers, if needed
-  // You can add any actions to be performed in case of a flower cell here
+  // Additional logic for flowers
+  // Add more Actions here
+
   console.log("Picked a Flower!");
 }
 
@@ -124,16 +120,20 @@ function endGame() {
 }
 
 /* mushroom */
-let foundMushrooms = 0; // Variable to keep track of the number of found mushrooms
-let mushrooms = []; // Array to store the generated mushroom numbers
 
 // Function to generate an array of random mushroom numbers
-function generateMushrooms(totalCells) {
-  mushrooms = [];
-  while (mushrooms.length < 3) {
-    const randomCellNumber = Math.floor(Math.random() * totalCells) + 1;
-    if (!mushrooms.includes(randomCellNumber)) {
-      mushrooms.push(randomCellNumber);
+function generateMushrooms() {
+  let mushrooms = generateMushrooms(totalCells); // Pass totalCells as an argument
+
+  // Function to generate an array of random mushroom numbers
+  function generateMushrooms(totalCells) {
+    mushrooms = [];
+    while (mushrooms.length < 16) {
+      const randomCellNumber = Math.floor(Math.random() * totalCells) + 1;
+      if (!mushrooms.includes(randomCellNumber)) {
+        mushrooms.push(randomCellNumber);
+      }
     }
+    return mushrooms;
   }
 }

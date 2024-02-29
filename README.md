@@ -66,3 +66,19 @@ What do I need to generate numbers?
 - Hid the difficulty selector after generating the grid.
 - showing an alert if no difficulty is selected.(need to fix this)
 - Changed the layout to use a while loop for cell instead a for loop to permit to play more times
+
+#
+
+### Flower:
+
+# First commit of sunflowers field
+
+add the existent job changing minesswe with flowers field,add text content wi…
+…th flower,grid change in flowerfield-grid,add event target when click the cell,add var mushroom,add function to generate mushroom, combination of flower and mushroom(handle),correption of global caracht(found oundMushrooms before function to give a power of Global),add a different logic flower handleFlowerLogic(to put more actions after).,function to generate array of random mushroom numbers with math random.At this point instead of mushroom we have a blue color like before and instead of card we have flowers.
+
+# Second commit of sunflowers field
+
+- Moved `generateMushrooms` call to initialize `mushrooms` after `totalCells` is calculated.
+- Passed `totalCells` as an argument to the `generateMushrooms` function.
+- Corrected the `generateMushrooms` function to properly return the generated array.
+- Corrected the scope of `totalCells` to make it accessible throughout the script.
