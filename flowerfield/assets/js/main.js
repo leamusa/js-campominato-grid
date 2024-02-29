@@ -1,7 +1,7 @@
 // Get references to HTML elements
-const gamePadBtn = document.getElementById("game-pad-btn"); // Reference to the "Play" button
-const difficultySelect = document.getElementById("difficulty-select"); // Reference to the difficulty level select
-const gridContainer = document.getElementById("flowerfield-grid"); // Reference to the grid container
+const gamePadBtn = document.getElementById("game-pad-btn");
+const difficultySelect = document.getElementById("difficulty-select");
+const gridContainer = document.getElementById("flowerfield-grid");
 
 // Add an event listener for the "Play" button
 gamePadBtn.addEventListener("click", generateFlowerfieldGrid);
@@ -22,17 +22,17 @@ function generateFlowerfieldGrid() {
     let columns;
 
     switch (parseInt(difficultySelect.value)) {
-      case 1:
+      case "1":
         totalCells = 100;
         rows = 10;
         columns = 10;
         break;
-      case 2:
+      case "2":
         totalCells = 81;
         rows = 9;
         columns = 9;
         break;
-      case 3:
+      case "3":
         totalCells = 49;
         rows = 7;
         columns = 7;
@@ -49,7 +49,7 @@ function generateFlowerfieldGrid() {
     // Generate the cells
     while (cellNumber <= totalCells) {
       const cell = document.createElement("div");
-      cell.textContent = "🌻"; // Floweremoji
+      cell.textContent = "🌻"; // Flower emoji
       cell.classList.add("FlowerCells"); // Add a class for styling
 
       // Add a click event listener for each cell
@@ -63,6 +63,12 @@ function generateFlowerfieldGrid() {
 
     // Set the grid layout based on the number of columns
     gridContainer.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+
+    // Generate an array of random mushroom numbers
+    let mushrooms = generateMushrooms(totalCells);
+
+    // Store the mushroom numbers in the data attribute of the grid container
+    gridContainer.dataset.mushrooms = JSON.stringify(mushrooms);
 
     // Alert the user to select a difficulty before playing
     alert("Please select a difficulty before playing.");
@@ -82,19 +88,16 @@ function handleMushroomCheck(clickedCell) {
   // Get the cell number from the text content
   const cellNumber = parseInt(clickedCell.textContent);
 
+  // Get the array of mushroom numbers from the data attribute
+  const mushrooms = JSON.parse(gridContainer.dataset.mushrooms);
+
   // Check if the cell number is present in the mushrooms array
   if (mushrooms.includes(cellNumber)) {
     // If it's a mushroom, change the cell background color to red
     clickedCell.style.backgroundColor = "#ff0000"; // Red color
 
-    // Increment the number of found mushrooms
-    foundMushrooms++;
-
-    // Check if the user has found 16 mushrooms
-    if (foundMushrooms === 16) {
-      // If the user has found 16 mushrooms, end the game
-      endGame();
-    }
+    // End the game
+    endGame("Mushroom stomped!");
   } else {
     // If it's not a mushroom, execute flower logic
     handleFlowerLogic(clickedCell);
@@ -104,36 +107,25 @@ function handleMushroomCheck(clickedCell) {
 // Function to handle additional flower logic
 function handleFlowerLogic(clickedCell) {
   // Change the background color of the cell to blue
-  clickedCell.style.backgroundColor = "#0000ff";
+  clickedCell.style.backgroundColor = "#0000ff"; // Blue color
 
   // Additional logic for flowers
   // Add more Actions here
 
-  console.log("Picked a Flower!");
+  // Check if the user has revealed all non-mushroom cells
+  if (
+    document.querySelectorAll(
+      '.FlowerCells[style*="background-color: #0000ff"]'
+    ).length ===
+    totalCells - 16
+  ) {
+    endGame("All flowers revealed! You win!");
+  }
 }
 
 // Function to end the game
-function endGame() {
-  // Communicate the score to the user
-  const score = totalCells - mushrooms.length;
-  alert(`Game Over! Your Score: ${score}`);
-}
-
-/* mushroom */
-
-// Function to generate an array of random mushroom numbers
-function generateMushrooms() {
-  let mushrooms = generateMushrooms(totalCells); // Pass totalCells as an argument
-
-  // Function to generate an array of random mushroom numbers
-  function generateMushrooms(totalCells) {
-    mushrooms = [];
-    while (mushrooms.length < 16) {
-      const randomCellNumber = Math.floor(Math.random() * totalCells) + 1;
-      if (!mushrooms.includes(randomCellNumber)) {
-        mushrooms.push(randomCellNumber);
-      }
-    }
-    return mushrooms;
-  }
+function endGame(message) {
+  // Communicate the game result to the user
+  alert(message);
+  // +actions to perform at the end of the game
 }

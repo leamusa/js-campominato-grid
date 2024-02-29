@@ -83,5 +83,13 @@ body {
   color: #e28ae2;
 }
 .FlowerCells {
-  font-size: 25px;
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  border: 1px solid #dfe56d;
+  margin: 5px;
+  text-align: center;
+  font-size: 24px;
+  cursor: pointer;
+  background-color: #d2f7b7;
 }
