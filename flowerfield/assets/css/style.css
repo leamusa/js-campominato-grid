@@ -1,0 +1,84 @@
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  height: 100%;
+  border: 2px dashed;
+  margin: 0 auto;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: #ffffff;
+}
+
+.grid-container {
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  border: 1px solid #ea1398;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #ffc2ec;
+}
+
+.SquareCells {
+  display: flex;
+  border: -3px solid #edc4d7;
+  height: 10px;
+  padding: 13px;
+  flex: 1;
+  border-radius: -2px;
+  background-color: #f3d9eb;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.SquareCells:hover {
+  background-color: #8f124d;
+}
+
+#game-pad-btn,
+#difficulty-select {
+  font-size: 18px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: #e6b6d3;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+#game-pad-btn:hover,
+#difficulty-select:hover {
+  background-color: #8f124d;
+}
+
+/* header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  background-color: #f2e1ec;
+}
+
+.logo img {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.title {
+  font-size: 30px;
+  display: flex;
+  align-self: baseline;
+  justify-content: end;
+  color: #e28ae2;
+}

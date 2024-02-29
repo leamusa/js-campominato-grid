@@ -1,3 +1,9 @@
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  height: 100vh;
+}
+
 .container {
   display: flex;
   height: 100%;
@@ -17,7 +23,6 @@
   border: 1px solid #ea1398;
   border-radius: 10px;
   padding: 20px;
-  border-radius: 10px;
   background-color: #ffc2ec;
 }
 
@@ -26,19 +31,19 @@
   border: -3px solid #edc4d7;
   height: 10px;
   padding: 13px;
-  /* width: 27px; */
-  text-align: center;
-  line-height: 30px;
-  cursor: pointer;
   flex: 1;
   border-radius: -2px;
   background-color: #f3d9eb;
-  /* flex-wrap: wrap; */
-  /* align-content: center; */
   justify-content: center;
   align-items: center;
   color: #ffffff;
+  cursor: pointer;
 }
+
+.SquareCells:hover {
+  background-color: #8f124d;
+}
+
 #game-pad-btn,
 #difficulty-select {
   font-size: 18px;
@@ -65,7 +70,6 @@
 }
 
 .card-front {
-  /* Stili per il lato anteriore */
   background-color: #e5a7cd;
   border: 2px solid #8f124d;
   border-radius: 10px;
