@@ -1,50 +1,36 @@
+/* style.css */
+
 body {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Arial", sans-serif;
   margin: 0;
-  height: 100vh;
+  padding: 0;
+  background-color: #f5f5f5;
 }
 
-.container {
+.header {
+  background-color: #e1b4dc;
+  color: #fff;
   display: flex;
-  height: 100%;
-  border: 2px dashed;
-  margin: 0 auto;
-  align-content: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  color: #ffffff;
-}
-
-.grid-container {
-  margin-top: 50px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  border: 1px solid #ea1398;
-  border-radius: 10px;
-  padding: 20px;
-  background-color: #ffc2ec;
-}
-
-.SquareCells {
-  display: flex;
-  border: -3px solid #edc4d7;
-  height: 10px;
-  padding: 13px;
-  flex: 1;
-  border-radius: -2px;
-  background-color: #f3d9eb;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  color: #ffffff;
-  cursor: pointer;
+  padding: 10px;
 }
 
-.SquareCells:hover {
-  background-color: #8f124d;
+.logo img {
+  max-width: 100px;
 }
 
-#game-pad-btn,
+.title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+#start-btn,
 #difficulty-select {
   font-size: 18px;
   padding: 10px;
@@ -55,41 +41,33 @@ body {
   cursor: pointer;
 }
 
-#game-pad-btn:hover,
-#difficulty-select:hover {
-  background-color: #8f124d;
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(
+    10,
+    1fr
+  ); /* Modifying colums a seconda della difficoltà */
+  gap: 5px;
+  margin: 20px;
 }
 
-/* header */
-.header {
+.cell {
+  background-color: #eecceb; /*  celle */
+  border: 1px solid #ccc;
+  height: 40px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 15px;
-  background-color: #f2e1ec;
-}
-
-.logo img {
-  width: 50px;
-  height: auto;
-  margin-right: 10px;
-}
-
-.title {
-  font-size: 30px;
-  display: flex;
-  align-self: baseline;
-  justify-content: end;
-  color: #e28ae2;
-}
-.FlowerCells {
-  width: 50px;
-  height: 50px;
-  display: inline-block;
-  border: 1px solid #dfe56d;
-  margin: 5px;
-  text-align: center;
-  font-size: 24px;
+  justify-content: center;
+  font-size: 20px;
   cursor: pointer;
-  background-color: #d2f7b7;
+}
+
+.cell.flower {
+  background-color: #87ceeb; /* Colore azzurro per le celle con il fiore */
+  color: #fff;
+}
+
+.cell.mushroom {
+  background-color: #ff0000; /* Colore rosso per le celle con il fungo */
+  color: #fff;
 }
