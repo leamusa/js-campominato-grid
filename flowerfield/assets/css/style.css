@@ -67,7 +67,12 @@ body {
   color: #fff;
 }
 
-.cell.mushroom {
-  background-color: #ff0000; /* Colore rosso per le celle con il fungo */
-  color: #fff;
+.cell.mushroom::after {
+  text-content: "🍄"; /* Aggiungi il contenuto del carattere */
+  background-color: #f2a3a3;
+  color: #00ff00; /* Conte */
+}
+
+.mushroom-image {
+  width: 100%;
 }
