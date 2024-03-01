@@ -1,23 +1,16 @@
 // Adds an event listener to the "Start Game" button that will call the startGame() function when clicked
 document.getElementById("start-btn").addEventListener("click", startGame);
 
-// Variable to track whether the game is in progress
-let gameInProgress = false;
-
-// Function to start the game
 function startGame() {
   const grid = document.getElementById("flowerfield-grid");
-  grid.innerHTML = "";
+  grid.innerHTML = ""; // Clears the content of the flower field when starting the game
 
   const difficulty = prompt(
     "Enter difficulty (1 for easy, 2 for medium, 3 for hard):"
   );
-  const totalCells = getGridSize(difficulty);
-  const mushrooms = generateMushrooms(totalCells);
+  const totalCells = getGridSize(difficulty); // Gets the total grid size based on difficulty
+  const mushrooms = generateMushrooms(totalCells); // Generates mushrooms randomly on the grid
 
-  gameInProgress = true; // Set game in progress
-
-  // For loop to create cells in the grid
   for (let i = 1; i <= totalCells; i++) {
     const cell = document.createElement("div");
     cell.classList.add("cell"); // Adds the "cell" class to each cell
@@ -27,17 +20,11 @@ function startGame() {
     cell.addEventListener("click", function () {
       const clickedNumber = parseInt(this.dataset.number);
 
-      if (mushrooms.includes(clickedNumber) && gameInProgress) {
+      if (mushrooms.includes(clickedNumber)) {
         // If it's a mushroom, reveal the mushroom and end the game
-        this.innerHTML = "🍄"; // Mushroom icon
-        this.style.color = "red"; // Set the text color to red for the red mushroom emoji
-
-        // Delay for 2 seconds before ending the game
-        setTimeout(() => {
-          if (gameInProgress) {
-            endGame();
-          }
-        }, 2000);
+        this.innerHTML = "&#127812;"; // Mushroom icon
+        this.style.backgroundColor = "red";
+        endGame();
       } else {
         // If it's not a mushroom and the game is still in progress, change the background color to blue
         if (gameInProgress) {
@@ -64,8 +51,7 @@ function generateMushrooms(totalCells) {
 
 // Function to end the game
 function endGame() {
-  gameInProgress = false; // Set game as not in progress
-  // Shows an alert that the game is over
+  // Show an alert indicating the game is over
   alert("Game Over! You stepped on a mushroom.");
   // Reloads the page for a new game
   location.reload();
